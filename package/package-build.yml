@@ -1,0 +1,32 @@
+apiVersion: kctrl.carvel.dev/v1alpha1
+kind: PackageBuild
+metadata:
+  creationTimestamp: null
+  name: dapr.packages.kadras.io
+spec:
+  template:
+    spec:
+      app:
+        spec:
+          deploy:
+          - kapp:
+              intoNs: dapr-system
+          template:
+          - helmTemplate:
+              name: dapr
+              namespace: dapr-system
+              path: config/helm/upstream/dapr
+              valuesFrom:
+              - path: config/helm/values.yml
+          - ytt:
+              ignoreUnknownComments: true
+              paths:
+              - '-'
+              - config/carvel
+          - kbld: {}
+      export:
+      - imgpkgBundle:
+          image: ghcr.io/kadras-io/package-for-dapr
+          useKbldImagesLock: true
+        includePaths:
+        - config

@@ -1,0 +1,12 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - helmChart:
+      name: dapr
+      repository:
+        url: https://dapr.github.io/helm-charts
+      version: 1.12.0
+    path: dapr
+  path: config/helm/upstream
+kind: Config
+minimumRequiredVersion: 0.32.0
