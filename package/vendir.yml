@@ -5,7 +5,7 @@ directories:
       name: dapr
       repository:
         url: https://dapr.github.io/helm-charts
-      version: 1.14.4
+      version: 1.15.3
     path: dapr
   path: config/helm/upstream
 kind: Config
